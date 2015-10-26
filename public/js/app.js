@@ -3,6 +3,8 @@ $(function(){
 
 mixpanel.track("Link Opened");
 console.log("Link Opened");
+
+
 var socket = io();
 var deviceRatio = window.getDevicePixelRatio();
 var ratio = 1;
@@ -327,8 +329,7 @@ socket.on('drawBoard',function(boardParams){
 	$("._hTallerInner").css({'width':grassTileSize,'height':grassTileSize,'margin-top':-grassTileSize/2,'margin-left':-grassTileSize/2});
 	$("._hStrongerInner").css({'width':grassTileSize,'height':grassTileSize,'margin-top':-grassTileSize/2,'margin-left':-grassTileSize/2});
 	$("._hSharperInner").css({'width':grassTileSize,'height':grassTileSize,'margin-top':-grassTileSize/2,'margin-left':-grassTileSize/2});
-	$('.gameArea').show();
-
+	//$('.gameArea').show();
 
 	$("._hShrineInner2").transition({rotate:'45deg'});
 	$("._hShrineCircle").transition({opacity:1});
@@ -339,17 +340,15 @@ socket.on('drawBoard',function(boardParams){
 
 	$(".loadingScreen").hide();
 	$(".gameArea").show();
+	
 
-	$(".tile").bind('touchstart',function(){
-		//$(this).css({'opacity':0.8});
-
-	}).bind('touchend',function(){
+	$(".tile").click(function(){
 
 		if(health > 0 && buildSubmit){
 				var index = $(this).attr('id');
 				index = parseInt(index);
 				if($(this).hasClass('_hTaller')){
-					health = reduceHealth(health,healthConstant);
+					
 					console.log(hitGrid[index]);
 					if(boardParams.linearGrid[index]!='X'){
 						hitGrid[index] --;
@@ -721,8 +720,19 @@ function reduceHealth(health,healthConstant){
 	healthHeight = (health/healthConstant) * 100;
 	healthHeight = (100 - healthHeight) + '%'
 	console.log(healthHeight);
-	$(".healthBar").transition({y:healthHeight},100).transition({rotate:'4deg'},120).transition({rotate:'-4deg'},120).transition({rotate:'0deg'},120);
-	if(health <= 0){
+	//$(".healthBar").transition({y:healthHeight},100).transition({rotate:'4deg'},120).transition({rotate:'-4deg'},120).transition({rotate:'0deg'},120);
+	//Animating in sequence
+	$element = $('.healthBar')
+	var mySequence = [
+	    { e: $element, p: { translateY: healthHeight }, o: { duration: 120 } },
+	    { e: $element, p: { rotateZ: '6deg' }, o: { duration: 120 } },
+	    { e: $element, p: { rotateZ: '-6deg' }, o: { duration: 120 } },
+	    { e: $element, p: { rotateZ: '0deg' }, o: { duration: 120 } }
+	];
+
+	$.Velocity.RunSequence(mySequence);
+
+	if(health < 0){
 		$(".doneBuild").addClass('inputHidden');
 	}
 	return health;
