@@ -1,0 +1,792 @@
+$shrine: #FE9132;
+$shrineInner: #FCB634;
+$taller:#FF7664;
+$tallerInner:#F75845;
+$stronger:#D05083;
+$strongerInner:#AD4D8D;
+$sharper:#BFC201;
+$sharperInner:#A4A106;
+$grass:#FFFFFF;
+$grassDark:#BBD6E7;
+$backColor:white;
+$screenColor: #546E7A;
+
+body{
+	background: $screenColor;
+	font-family: 'Roboto Mono';
+	margin:0px;
+	padding:0px;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+*{
+	box-sizing:border-box;
+}
+.layout{
+	position: absolute;
+	top:50%;
+	margin-top:-75px;
+	left:0;
+	width: 100%;
+	display: none;
+}
+.content{
+	width: 100%;
+	margin-left:auto;
+	margin-right:auto;
+	height: 150px;
+	text-align: center;
+}
+
+.intro{
+	display: block;
+}
+
+.gameArea{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: none;
+	overflow: hidden;
+	background:white;
+}
+.screen{
+	position: absolute;
+	width: 100%;
+	top:50%;
+	z-index: 10;
+	font-size: 0px;
+}
+.topScreen{
+	position: absolute;
+	width: 100%;
+	top:50%;
+	font-size: 0px;
+}
+
+.bottomScreen{
+	position: absolute;
+	width: 100%;
+	top:50%;
+	font-size: 0px;
+}
+._hTile{
+	position: relative;
+	display: inline-block;
+	background: white;
+	opacity: 1;
+	box-sizing:border-box;
+}
+
+._hShrine{
+	position: relative;
+	display: inline-block;
+	/*background: rgba(241,196,15,0.7);*/
+	background: $shrine;
+	box-sizing:border-box;
+	opacity: 0.8;
+}
+
+._hShrineInner{
+	position: absolute;
+	background: $shrineInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+	opacity: 1;
+}
+
+._hShrineInner2{
+	position: absolute;
+	background: $shrineInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+	opacity: 1;
+}
+
+._hShrineCircle{
+	position: absolute;
+	background: $shrineInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+	border-radius: 200px;
+	opacity: 0;
+}
+
+
+._hTaller{
+	position: relative;
+	display: inline-block;
+	background: $taller;
+	opacity: 1;
+	box-sizing:border-box;
+}
+
+._shrineFaded{
+	position: relative;
+	display: inline-block;
+	background: $shrine;
+	opacity: 0.8;
+	box-sizing:border-box;
+}
+
+._hTallerInner{
+	position: relative;
+	background: $tallerInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+}
+
+
+._hStronger{
+	position: relative;
+	display: inline-block;
+	background: $stronger;
+	opacity: 1;
+	box-sizing:border-box;
+}
+
+._hStrongerInner{
+	position: relative;
+	background: $strongerInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+}
+
+
+._hSharper{
+	position: relative;
+	display: inline-block;
+	background: $sharper;
+	opacity: 1;
+	box-sizing:border-box;
+}
+
+._hSharperInner{
+	position: relative;
+	background: $sharperInner;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+}
+
+._hBlankTile{
+	position: relative;
+	display: inline-block;
+	background: white;
+	opacity: 0;
+	box-sizing:border-box;
+}
+
+._hGrass{
+	position: relative;
+	display: inline-block;
+	background: $grass;
+	opacity: 0.2;
+	box-sizing:border-box;
+}
+
+._hGrassDark{
+	position: relative;
+	display: inline-block;
+	background: $grassDark;
+	opacity: 0.2;
+	box-sizing:border-box;
+	text-align: center;
+}
+._hGrassInner{
+	position: relative;
+	background: $grassDark;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left:50%;
+	top:50%;
+}
+
+._hGrassInnerDark{
+	position: relative;
+	background: $grass;
+	box-sizing:border-box;
+	vertical-align: middle;
+	left: 50%;
+	top:50%;
+}
+.pattern{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png"); 
+	background-repeat:repeat; 
+	opacity: 0;
+}
+
+
+.innerPattern{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png");
+  	background-repeat: repeat;
+  	opacity: 0;
+}
+
+.skillsBar{
+	position: fixed;
+	top:0px;
+	height: 10px;
+	width: 100%;
+	font-size: 0px;
+	z-index: 15;
+}
+
+.skill{
+	position: relative;
+	height: 100%;
+	display: inline-block;
+}
+
+.taller{
+	background:$tallerInner;
+	display: inline-block;
+}
+
+.stronger{
+
+	background:$strongerInner;
+	display: inline-block;
+}
+
+.sharper{
+	background:$sharperInner;
+	display: inline-block;
+}
+
+.healthBar{
+	position: fixed;
+	width: 150%;
+	bottom:0px;
+	height: 100%;
+	z-index: 5;
+	left:-25%;
+	background: rgba(#BBD6E7, 0.6);
+	opacity: 0.8;
+}
+
+.health{
+	position: absolute;
+	height: 100%;
+	width: 150%;
+	left:-25%;
+	background-image: url("../img/pattern/sosbackup.png");
+  	background-repeat: repeat;
+  	opacity: 1;
+}
+.healthother{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-image: url("../img/pattern/sosflipbackup.png");
+  	background-repeat: repeat;
+  	opacity: 0.6;
+}
+
+.homescreen{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #546E7A;
+	-webkit-backface-visibility: hidden;
+}
+.patternOther{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png");
+  	background-repeat: repeat;
+  	opacity: 0.6;
+}
+.homeContent{
+	position: relative;
+	width:100%;
+	margin:0 auto;
+	padding: 10%;
+	text-align: center;
+}
+
+.btn{
+	position: relative;
+	text-align: center;
+	font-size: 20px;
+	line-height: 25px;
+	width: 250px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin:15px 0px;
+	background: none;
+	border: 3px solid white;
+	padding:10px;
+	font-style: italic;
+	color:white;
+	box-shadow: 5px 5px rgba(68, 68, 68, 0.7);
+}
+.btnOther{
+	position: relative;
+	text-align: center;
+	font-size: 20px;
+	line-height: 25px;
+	width: 250px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin:15px 0px;
+	background: none;
+	border: 3px solid white;
+	padding:10px;
+	font-style: italic;
+	color:white;
+	box-shadow: 5px 5px rgba(68, 68, 68, 0.7);
+}
+.footer{
+	position: relative;
+	color:white;
+	opacity: 0.6;
+	padding-top: 20px;
+}
+.start{
+	background: rgba($taller,0.3);
+	border-color:$tallerInner;
+}
+.join{
+	background: rgba($stronger,0.3);
+	border-color:$strongerInner;
+}
+.story{
+	background: rgba($sharper,0.3);
+	border-color:$sharperInner;
+}
+
+.tallerClan{
+	background: rgba($taller,0.3);
+	border-color:$tallerInner;
+	text-align: left;
+}
+.strongerClan{
+	background: rgba($stronger,0.3);
+	border-color:$strongerInner;
+	text-align: left;
+}
+.sharperClan{
+	background: rgba($sharper,0.3);
+	border-color:$sharperInner;
+	text-align: left;
+}
+
+.aptClan{
+	background: rgba($shrine,0.3);
+	border-color:$shrineInner;
+	text-align: left;
+}
+
+
+
+.btn:active{
+	-webkit-transform:scale(1.05);
+}
+
+.hostGame{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #546E7A;
+	display: none;
+	-webkit-backface-visibility: hidden;
+}
+
+.joinGame{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #546E7A;
+	display: none;
+	-webkit-backface-visibility: hidden;
+}
+.inputContainer{
+	position: relative;
+	margin-top: 10px;
+	width:250px;
+	height:50px;
+}
+
+.inputBox{
+	position: relative;
+	display: inline-block;
+	width:50px;
+	height: 50px;
+	text-align: center;
+	line-height: 40px;
+	color:white;
+	font-size: 20px;
+	border:3px solid rgba($grassDark,1);
+	box-shadow: none;
+	text-transform: uppercase;
+	background: rgba($grass,0.5);
+	border-radius: none;
+	color:white;
+	font-weight: bold;
+	font-style: italic;
+	box-shadow: 5px 5px rgb(68, 68, 68);
+	float:left;
+	margin-right:16.5px;
+}
+.inputBox:focus{
+	border:3px solid rgba($grassDark,1);
+	background: rgba($grass,0.5);
+	outline:0;
+}
+.startplay{
+	background: rgba(255,255,255,0.3);
+	border-color:white;
+	color:white;
+}
+.tile{
+	opacity: 0.7;
+}
+
+
+
+.depth_1{
+  -webkit-filter: drop-shadow(0 0.6px 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0.6px 0.6px rgba(0, 0, 0, 0.24));
+          filter: drop-shadow(0 0.6px 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0.6px 0.6px rgba(0, 0, 0, 0.24));
+}
+
+.depth_2{
+  -webkit-filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
+          filter: drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
+}
+
+.depth_3{
+  -webkit-filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 3.6px 1.8px rgba(0, 0, 0, 0.23));
+          filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 3.6px 1.8px rgba(0, 0, 0, 0.23));
+}
+
+.depth_4{
+  -webkit-filter: drop-shadow(0 8.4px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 6px 3px rgba(0, 0, 0, 0.22));
+          filter: drop-shadow(0 8.4px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 6px 3px rgba(0, 0, 0, 0.22));
+}
+
+.depth_5{
+  -webkit-filter: drop-shadow(0 11.4px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 9px 3.6px rgba(0, 0, 0, 0.22));
+          filter: drop-shadow(0 11.4px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 9px 3.6px rgba(0, 0, 0, 0.22));
+}
+
+.navScreen{
+	position: absolute;
+	width:100%;
+	height:100%;
+	background:$screenColor;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform:translate3d(0,0,0);
+}
+
+.navScreen:after{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png");
+  	background-repeat: repeat;
+  	opacity: 0.6;
+	top: 0px;
+	right: 0px;
+	position: absolute;
+	display: inline-block;
+}
+
+.navScreenInner{
+	position: relative;
+	width:250px;
+	margin:0 auto;
+	text-align:center;
+	z-index:5;
+}
+
+.navScreenInnerFull{
+	position: absolute;
+	height:100%;
+	width:100%;
+	text-align:center;
+	z-index:5;
+}
+
+.logo{
+	position: relative;
+	width: 80%;
+	margin-top:20%;
+}
+
+.header{
+	position: relative;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: bold;
+	text-transform: italic;
+	color:white;
+	font-style: italic;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.headerSmall{
+	position: relative;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: italic;
+	color:white;
+	font-style: italic;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.shadow{
+	text-shadow: rgb(68, 68, 68) 5px 5px;
+}
+
+.shadowSmall{
+	text-shadow: rgb(68, 68, 68) 3px 3px;	
+}
+
+.subHeader{
+	position: relative;
+	color:white;
+	opacity: 0.8;
+	padding:5px 10px;
+	font-style:italic;
+}
+
+.glaxo{
+	background: rgba($taller,0.3);
+	border-color:$tallerInner;
+}
+
+.smith{
+	background: rgba($stronger,0.3);
+	border-color:$strongerInner;
+}
+
+.kline{
+	background: rgba($sharper,0.3);
+	border-color:$sharperInner;
+}
+
+.stark{
+	background: rgba($shrine,0.3);
+	border-color:$shrineInner;
+}
+
+.white{
+	background: rgba($grass,0.3);
+	border-color:$grassDark;
+}
+
+.level{
+	position: absolute;
+	top:0px; 
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index:-1;
+}
+.full{
+	width:100% !important;
+}
+
+.mid{
+	width:65% !important;
+}
+
+.less{
+	width:34% !important;
+}
+
+.tallLevel{
+	background: rgba($taller,0.6);
+}
+
+.strongLevel{
+	background: rgba($stronger,0.6);
+}
+
+.sharpLevel{
+	background: rgba($sharper,0.6);
+}
+
+.home{
+	display:block;
+}
+
+.clanSelect{
+	display:none;
+}
+
+.glaxoScreen{
+	display:none;
+}
+
+.smithScreen{
+	display:none;
+}
+
+.klineScreen{
+	display:none;
+}
+
+.starkScreen{
+	display:none;
+}
+
+.hostDesc{
+	margin-top:10px;
+}
+
+.inputHidden{
+	opacity:0.3;
+}
+.twoButton{
+	position: relative;
+	width:250px;
+	display:inline-block;
+}
+.smallLeft{
+	position: relative;
+	display:inline-block;
+	float:left;
+	width:116.75px;
+}
+.smallRight{
+	width:116.75px;
+	float:right;
+	position: relative;
+	display:inline-block;
+}
+
+.noTopMargin{
+	margin-top:0 !important;
+}
+
+.noBottomMargin{
+	margin-bottom:0 !important;
+}
+
+.noRightMargin{
+	margin-right:0 !important;
+}
+
+.noLeftMargin{
+	margin-left:0 !important;
+}
+
+.equalMargin{
+	margin:10px 0px !important;
+}
+.noMargin{
+	margin:0px !important;
+}
+.hostScreen{
+	display:none;
+	overflow-y:scroll;
+}
+.lower{
+	text-transform:lowercase;
+}
+.joinScreen{
+	display:none;
+	overflow-y:scroll;
+}
+.topHalf{
+	position:absolute;
+	width:100%;
+	height:50%;
+	vertical-align:middle;
+}
+.bottomHalf{
+	position:absolute;
+	width:100%;
+	top:50%;
+	height:50%;
+}
+.alignBottom{
+	position: absolute !important;
+	bottom:0px;
+}
+.fullWidthText{
+	position: absolute;
+	width:100%;
+	padding:30px 10% !important;
+	margin-bottom:30px !important;
+}
+.alignNo{
+	line-height:0px;
+	font-size:150px;
+	margin-top:90px !important;
+}
+.middleLine{
+	position: absolute;
+	width:100%;
+	top:50%;
+	height:4px;
+	margin-top:-2px;
+	background:$grass;
+}
+.tapArea{
+	position: absolute;
+	width:100%;
+	height:100%;
+	background:rgba($grassDark,0.2);
+	opacity:0.001;
+}
+.alignScreen{
+	display:none;
+}
+
+.loadingScreen{
+	display:none;
+}
+
+.loadingText{
+	position: absolute;
+	line-height:200px;
+	width:100%;
+	top:50%;
+	text-align:center;
+	color:white;
+	font-style:italic;
+	margin-top:-100px !important;
+}
+
+
+.doneBuild{
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    width: 116.75px !important;
+    z-index: 50;
+    margin-left: -58.375px !important;
+    color:$shrine;
+    background: rgba($shrine,0.6);
+	border-color:$shrine;
+	box-shadow: 5px 5px rgba(68, 68, 68, 0.3) !important;
+	text-shadow: rgba($shrineInner,1) 3px 3px !important;	
+}
