@@ -1,5 +1,8 @@
 $(function(){
 
+
+mixpanel.track("Link Opened");
+console.log("Link Opened");
 var socket = io();
 var deviceRatio = window.getDevicePixelRatio();
 var ratio = 1;
