@@ -2,7 +2,7 @@ $(function(){
 
 //Dont forget to turn off the comments for the mixpanel logging
 
-//mixpanel.track("Link Opened");
+mixpanel.track("Link Opened");
 
 console.log("Link Opened");
 
