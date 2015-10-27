@@ -1,9 +1,12 @@
 $(function(){
 
+//Dont forget to turn off the comments for the mixpanel logging
 
-mixpanel.track("Link Opened");
-console.log("Link Opened");
+//mixpanel.track("Link Opened");
 
+LOG && console.log("Link Opened");
+
+FastClick.attach(document.body);
 
 var socket = io();
 var deviceRatio = window.getDevicePixelRatio();
@@ -73,6 +76,8 @@ var updateGlobalIndex = 0;
 var gameOn = 0;
 var localJoinData = new Object();
 flickerStarted = 0;
+
+
 //Functions executed from the server
 
 socket.on('hostGameSetup',function(gameData){
@@ -87,8 +92,8 @@ socket.on('hostGameSetup',function(gameData){
 	$(".i1").val(gameIdArray[1]);
 	$(".i2").val(gameIdArray[2]);
 	$(".i3").val(gameIdArray[3]);
-	console.log("Host Game Setup Setting -------------------------");
-	console.log(gameData);
+	LOG && console.log("Host Game Setup Setting -------------------------");
+	LOG && console.log(gameData);
 
 });
 
@@ -96,14 +101,14 @@ socket.on('playerJoined',function(gameData){
 
 	transitScreen('loadingScreen','joinScreen');
 	var gameData = JSON.parse(gameData);
-	console.log(gameData);
+	LOG && console.log(gameData);
 	socket.emit('updateGlobalStatus'); 
 	$(".joinScreenTwo").hide(); 
 
 });
 
 socket.on('wrongGameIdEntered',function(){
-	console.log("Wrong Id Entered");
+	LOG && console.log("Wrong Id Entered");
 	$(".loadingText").html("Wrong Code.");
 	setTimeout(function(){
 		$(".joinInput").val("");
@@ -115,7 +120,7 @@ socket.on('wrongGameIdEntered',function(){
 
 socket.on('requestGameData',function(gameData){
 	var gameData = JSON.parse(gameData);
-	console.log(gameData);
+	LOG && console.log(gameData);
 });
 
 socket.on('alignScreens',function(index){
@@ -145,7 +150,7 @@ socket.on('endGame',function(){
 	flickerStarted = 0;
 	buildSubmit = 1;
 	$(".clans").empty();
-	console.log("Game Ended");
+	LOG && console.log("Game Ended");
 });
 
 
@@ -154,9 +159,9 @@ socket.on('endGame',function(){
 socket.on('updateGlobalStatus',function(gameData){
 
 
-	console.log(gameData);
-	console.log(gameData.playersJoined);
-	console.log(updateGlobalIndex);
+	LOG && console.log(gameData);
+	LOG && console.log(gameData.playersJoined);
+	LOG && console.log(updateGlobalIndex);
 	var typeClan = ['tallerClan','strongerClan','sharperClan','aptClan'];
 	var clanName = ['glaxo','smith','kline','stark'];
 	var thPlayer = ['st','nd','rd','th'];
@@ -176,7 +181,7 @@ socket.on('updateGlobalStatus',function(gameData){
 
 socket.on('showMoto',function(){
 
-	console.log("Showing Moto");
+	LOG && console.log("Showing Moto");
 	var moto = ['Taller','Stronger','Sharper','Go!'];
 	var i=0;
 	var interval = setInterval(function(){
@@ -203,10 +208,10 @@ socket.on('drawBoard',function(boardParams){
 	tallPer = (clans[clan].tall / total)*100;
 	strongPer = (clans[clan].strong / total)*100;
 	sharpPer = (clans[clan].sharp / total)*100;
-	console.log(total);
-	console.log(strongPer);
-	console.log(sharpPer);
-	console.log(tallPer);
+	LOG && console.log(total);
+	LOG && console.log(strongPer);
+	LOG && console.log(sharpPer);
+	LOG && console.log(tallPer);
 
 
 	$(".taller").css({'width':tallPer+'%'});
@@ -225,12 +230,12 @@ socket.on('drawBoard',function(boardParams){
 	$('.bottomScreen').css({'margin-top':-margin});
 	
 	n = boardParams.cols*5;
-	console.log(n);
+	LOG && console.log(n);
 
 	//Setting Health Params
 	health = Math.round(n*baseHealth)/baseTiles;
 
-	console.log(health);
+	LOG && console.log(health);
 	for(i=0;i<n;i++){
 		index = i;
 		index = index.toString();
@@ -244,15 +249,15 @@ socket.on('drawBoard',function(boardParams){
 				$(".screen").append(_hBlankTile);
 				break;
 			case 'T':
-				var _hTaller = '<div id= "'+ index +'"class="_hTaller tile element"><div class="_hTallerInner depth_4"></div></div>';
+				var _hTaller = '<div id= "'+ index +'"class="_hTaller tile element"><div id="'+ index +'i" class="_hTallerInner  depth_4"></div></div>';
 				$(".screen").append(_hTaller);
 				break;
 			case 'S':
-				var _hStronger = '<div id= "'+ index +'"class="_hStronger tile element"><div class="_hStrongerInner depth_4"></div></div>';
+				var _hStronger = '<div id= "'+ index +'"class="_hStronger tile element"><div id="'+ index +'i" class="_hStrongerInner  depth_4"></div></div>';
 				$(".screen").append(_hStronger);
 				break;
 			case 'Z':
-				var _hSharper = '<div id= "'+ index +'"class="_hSharper tile element"><div class="_hSharperInner depth_4"></div></div>';
+				var _hSharper = '<div id= "'+ index +'"class="_hSharper tile element"><div id="'+ index +'i" class="_hSharperInner  depth_4"></div></div>';
 				$(".screen").append(_hSharper);
 				break;
 			default:
@@ -271,11 +276,11 @@ socket.on('drawBoard',function(boardParams){
 
 	var _hGrassDark = '<div class="_hGrassDark element"><div class="pattern"></div><div class="_hGrassInnerDark"><div class="innerPattern"></div></div></div>';
 
-	var hitGrid = new Array();
 
-	console.log(boardParams.linearGrid);
 	hitGrid = boardParams.linearGrid.slice(0);
-	console.log(hitGrid);
+	linearGrid = boardParams.linearGrid.slice(0);
+	LOG && console.log(hitGrid);
+
 	for(i=0;i<hitGrid.length;i++){
 		if(hitGrid[i] == 'T'){
 			hitGrid[i] = clans[clan].tallHit;
@@ -285,10 +290,10 @@ socket.on('drawBoard',function(boardParams){
 			hitGrid[i] = clans[clan].sharpHit;
 		}
 	}
-	console.log("hitGrid");
-	console.log(hitGrid);
-	console.log("LinearGrid");
-	console.log(boardParams.linearGrid);
+	LOG && console.log("hitGrid");
+	LOG && console.log(hitGrid);
+	LOG && console.log("LinearGrid");
+	LOG && console.log(boardParams.linearGrid);
 
 	for(i=0;i<5*3;i++){
 		
@@ -331,8 +336,11 @@ socket.on('drawBoard',function(boardParams){
 	$("._hSharperInner").css({'width':grassTileSize,'height':grassTileSize,'margin-top':-grassTileSize/2,'margin-left':-grassTileSize/2});
 	//$('.gameArea').show();
 
-	$("._hShrineInner2").transition({rotate:'45deg'});
-	$("._hShrineCircle").transition({opacity:1});
+	//Add hardware acceleration
+
+
+	$("._hShrineInner2").velocity({rotateZ:'45deg'},{ mobileHA: true });
+	$("._hShrineInner2").velocity({rotateZ:'360deg'},{duration:3000,loop:true,easing:'linear',mobileHA:true});
 
 	//launchIntoFullscreen(document.getElementById("gameArea"));	
 
@@ -342,91 +350,129 @@ socket.on('drawBoard',function(boardParams){
 	$(".gameArea").show();
 	
 
-	$(".tile").click(function(){
+
+	$("._hTaller").bind('touchend',function(){
 
 		if(health > 0 && buildSubmit){
-				var index = $(this).attr('id');
-				index = parseInt(index);
-				if($(this).hasClass('_hTaller')){
-					
-					console.log(hitGrid[index]);
-					if(boardParams.linearGrid[index]!='X'){
-						hitGrid[index] --;
-						switch(hitGrid[index]){
-							case 1:
-								$(this).css({'opacity':opacity[1]});
-							break;
-							case 2:
-								$(this).css({'opacity':opacity[2]});
-							break;
-							case 0:
-								$(this).css({'opacity':opacity[0]});
-								boardParams.linearGrid[index] = 'X';
-								hitGrid[index] = 0;
-								$(this).css({'background':'#FE9132','opacity':0.7});
-								$(this).children().hide();
-							break;
-						}
-					}
-				}else if($(this).hasClass('_hStronger')){
-					//console.log(hitGrid[index]);
-					if(boardParams.linearGrid[index]!='X'){
-						health = reduceHealth(health,healthConstant);
-						hitGrid[index] --;
-						switch(hitGrid[index]){
-							case 1:
-								$(this).css({'opacity':opacity[1]});
-							break;
-							case 2:
-								$(this).css({'opacity':opacity[2]});
-							break;
-							case 0:
-								$(this).css({'opacity':opacity[0]});
-								boardParams.linearGrid[index] = 'X';
-								hitGrid[index] = 0;
-								$(this).css({'background':'#FE9132','opacity':0.7});
-								$(this).children().hide();
-							break;
-						}
-					}
-				}else if($(this).hasClass('_hSharper')){
-					console.log("Printing HitIndex");
-					console.log(hitGrid[index]);
-					if(boardParams.linearGrid[index]!='X'){
-						health = reduceHealth(health,healthConstant);
-						hitGrid[index] --;
-						console.log(hitGrid[index]);
-						switch(hitGrid[index]){
-							case 1:
-								console.log("case 1");
-								$(this).css({'opacity':opacity[1]});
-							break;
-							case 2:
-								console.log("case 2");
-								$(this).css({'opacity':opacity[2]});
-							break;
-							case 0:
-								console.log("case 0");
-								$(this).css({'opacity':opacity[0]});
-								boardParams.linearGrid[index] = 'X';
-								hitGrid[index] = 0;
-								$(this).css({'background':'#FE9132','opacity':0.7});
-								$(this).children().hide();
-							break;
-						}
-					}
-				}		
-				console.log("LinearGrid");
-				console.log(boardParams.linearGrid);
-				console.log("HitGrid");
-				console.log(hitGrid);
+			var index = $(this).attr('id');
+			index = parseInt(index);
+			if(linearGrid[index]!="X" && linearGrid[index]!="O" && linearGrid[index]!="I"){
+					health = reduceHealth(health,healthConstant);
+					hitGrid[index] --;
+					animateTile(index,$(this));
+			}
+		}
+
+	});
+
+	$("._hStronger").bind('touchend',function(){
+
+		if(health > 0 && buildSubmit){
+			var index = $(this).attr('id');
+			index = parseInt(index);
+			if(linearGrid[index]!="X" && linearGrid[index]!="O" && linearGrid[index]!="I"){
+					health = reduceHealth(health,healthConstant);
+					hitGrid[index] --;
+					animateTile(index,$(this));
+			}
+		}
+
+	});
+
+	$("._hSharper").bind('touchend',function(){
+
+		if(health > 0 && buildSubmit){
+			var index = $(this).attr('id');
+			index = parseInt(index);
+			if(linearGrid[index]!="X" && linearGrid[index]!="O" && linearGrid[index]!="I"){
+					health = reduceHealth(health,healthConstant);
+					hitGrid[index] --;
+					animateTile(index,$(this));
+			}
 		}
 
 	});
 
 
-});
+	/*$(".tile").bind('touchend',function(){
 
+		if(health > 0 && buildSubmit){
+
+				var index = $(this).attr('id');
+				index = parseInt(index);
+				if(boardParams.linearGrid[index]!="X" && boardParams.linearGrid[index]!="O" && boardParams.linearGrid[index]!="I"){
+					health = reduceHealth(health,healthConstant);
+				}
+
+				if($(this).hasClass('_hTaller')){
+					if(boardParams.linearGrid[index]!='X'){
+						hitGrid[index] --;
+						switch(hitGrid[index]){
+							case 1:
+								$(this).css({'opacity':opacity[1]});
+							break;
+							case 2:
+								$(this).css({'opacity':opacity[2]});
+							break;
+							case 0:
+								$(this).css({'opacity':opacity[0]});
+								boardParams.linearGrid[index] = 'X';
+								hitGrid[index] = 0;
+								$(this).css({'background':'#FE9132','opacity':0.7});
+								//$(this).children().hide();
+							break;
+						}
+					}
+				}else if($(this).hasClass('_hStronger')){
+					LOG && //console.log(hitGrid[index]);
+					if(boardParams.linearGrid[index]!='X'){
+						
+						hitGrid[index] --;
+						switch(hitGrid[index]){
+							case 1:
+								$(this).css({'opacity':opacity[1]});
+							break;
+							case 2:
+								$(this).css({'opacity':opacity[2]});
+							break;
+							case 0:
+								$(this).css({'opacity':opacity[0]});
+								boardParams.linearGrid[index] = 'X';
+								hitGrid[index] = 0;
+								$(this).css({'background':'#FE9132','opacity':0.7});
+								//$(this).children().hide();
+							break;
+						}
+					}
+				}else if($(this).hasClass('_hSharper')){
+
+					if(boardParams.linearGrid[index]!='X'){
+						
+						hitGrid[index] --;
+						LOG && console.log(hitGrid[index]);
+						switch(hitGrid[index]){
+							case 1:
+								$(this).css({'opacity':opacity[1]});
+							break;
+							case 2:
+								$(this).css({'opacity':opacity[2]});
+							break;
+							case 0:
+								$(this).css({'opacity':opacity[0]});
+								boardParams.linearGrid[index] = 'X';
+								hitGrid[index] = 0;
+								$(this).css({'background':'#FE9132','opacity':0.7});
+								//$(this).children().hide();
+							break;
+						}
+					}
+				}		
+		}
+
+	});*/
+
+
+});///io.on("conncetion ends here");
 
 
 /*$(".hostDemo").click(function(){
@@ -504,7 +550,7 @@ $(".glaxoSelected").click(function(){
 	data.size = size;
 	data.clan = playerClan;
 	localJoinData = data;
-	console.log(data);
+	LOG && console.log(data);
 	if(isHost){
 		$(".loadingText").html("Creating Game");
 		transitScreen('glaxoScreen','loadingScreen');
@@ -525,7 +571,7 @@ $(".smithSelected").click(function(){
 	data.size = size;
 	data.clan = playerClan;
 	localJoinData = data;
-	console.log(data);
+	LOG && console.log(data);
 	if(isHost){
 		$(".loadingText").html("Creating Game");
 		transitScreen('smithScreen','loadingScreen');
@@ -544,7 +590,7 @@ $(".klineSelected").click(function(){
 	data.size = size;
 	data.clan = playerClan;
 	localJoinData = data;
-	console.log(data);
+	LOG && console.log(data);
 	if(isHost){
 		$(".loadingText").html("Creating Game");
 		transitScreen('klineScreen','loadingScreen');
@@ -563,7 +609,7 @@ $(".starkSelected").click(function(){
 	data.size = size;
 	data.clan = playerClan;
 	localJoinData = data;
-	console.log(data);
+	LOG && console.log(data);
 	if(isHost){
 		
 		$(".loadingText").html("Creating Game");
@@ -586,7 +632,7 @@ $(".exitGame").click(function(){
 $(".readyToJoin").click(function(){
 	var joinGame = new Object();
 	var gameIdInput = $(".joinInput0").val().toUpperCase() + $(".joinInput1").val().toUpperCase() + $(".joinInput2").val().toUpperCase() + $(".joinInput3").val().toUpperCase();
-	console.log(gameIdInput);
+	LOG && console.log(gameIdInput);
 	joinGame.gameId = gameIdInput;
 	joinGame.size = getScreenSize();
 	joinGame.clan = playerClan;
@@ -652,7 +698,7 @@ $(".doneBuild").click(function(){
 
 	var joinGame = new Object();
 	var gameIdInput = $(".i0").val().toUpperCase() + $(".i1").val().toUpperCase() + $(".i2").val().toUpperCase() + $(".i3").val().toUpperCase();
-	console.log(gameIdInput);
+	LOG && console.log(gameIdInput);
 	joinGame.gameId = gameIdInput;
 	joinGame.size = getScreenSize();
 	socket.emit('joinGame',joinGame);
@@ -719,15 +765,15 @@ function reduceHealth(health,healthConstant){
 	health -- ;
 	healthHeight = (health/healthConstant) * 100;
 	healthHeight = (100 - healthHeight) + '%'
-	console.log(healthHeight);
+	LOG && console.log(healthHeight);
 	//$(".healthBar").transition({y:healthHeight},100).transition({rotate:'4deg'},120).transition({rotate:'-4deg'},120).transition({rotate:'0deg'},120);
 	//Animating in sequence
 	$element = $('.healthBar')
 	var mySequence = [
-	    { e: $element, p: { translateY: healthHeight }, o: { duration: 120 } },
-	    { e: $element, p: { rotateZ: '6deg' }, o: { duration: 120 } },
-	    { e: $element, p: { rotateZ: '-6deg' }, o: { duration: 120 } },
-	    { e: $element, p: { rotateZ: '0deg' }, o: { duration: 120 } }
+	    { e: $element, p: { translateY: healthHeight }, o: { duration: 120, mobileHA:true } },
+	    { e: $element, p: { rotateZ: '6deg' }, o: { duration: 120, mobileHA:true } },
+	    { e: $element, p: { rotateZ: '-6deg' }, o: { duration: 120, mobileHA:true } },
+	    { e: $element, p: { rotateZ: '0deg' }, o: { duration: 120, mobileHA:true } }
 	];
 
 	$.Velocity.RunSequence(mySequence);
@@ -752,6 +798,53 @@ function transitScreen(from,to){
 }
 
 
+function animateTile(index, element){
+	$elem = $("#"+index);
+	$child = $("#"+index+"i");
+	LOG && console.log(index);
+	LOG && console.log(hitGrid[index]);
+	var scaleArray = [0,0.5,0.75];
+	var myTime = 250;
+	if(hitGrid[index] == 0){
+		LOG && console.log("If section");
+		linearGrid[index] = 'X';
+		hitGrid[index] = 0;
+		$child.velocity({scaleX:1.1,scaleY:1.1},{duration:myTime,mobileHA:true,complete:function(){
+			$child.velocity({scaleX:scaleArray[hitGrid[index]],scaleY:scaleArray[hitGrid[index]]},{duration:myTime,mobileHA:true,complete:function(){
+				
+				$elem.velocity({
+					backgroundColor: "#FE9132",
+    				backgroundColorAlpha: 0.8,
+				},{duration:myTime, mobileHA:true});
+
+				$child.velocity({
+					backgroundColor: "#FCB634",
+    				backgroundColorAlpha: 0.8,
+    				scaleX:1,
+    				scaleY:1
+				},{duration:myTime, mobileHA:true});
+
+			}});
+		}});
+
+	}else{
+		LOG && console.log("Else Section");
+		$child.velocity({scaleX:1.1,scaleY:1.1},{duration:myTime, mobileHA:true ,complete:function(){
+			$child.velocity({scaleX:scaleArray[hitGrid[index]],scaleY:scaleArray[hitGrid[index]]},{duration:myTime, mobileHA:true});
+		}});
+	}
+
+}
+
+
+
+//Array Declaration
+
+
+var hitGrid = new Array();
+var linearGrid = new Array();
+
+var LOG = false;
 /*function showLoading(from,text){
 	
 	var to = 'loadingScreen';
