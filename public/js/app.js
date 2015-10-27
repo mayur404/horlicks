@@ -4,7 +4,7 @@ $(function(){
 
 //mixpanel.track("Link Opened");
 
-LOG && console.log("Link Opened");
+console.log("Link Opened");
 
 FastClick.attach(document.body);
 

@@ -1,0 +1,10 @@
+timing-function	ease, ease-out, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) (e.g. cubic-bezier(0.5, 0.2, 0.3, 1.0))
+
+
+duration & delay	Xs or Xms
+
+duration-count	X
+
+fill-mode	forwards, backwards, both, none
+
+animation-direction	normal, alternate

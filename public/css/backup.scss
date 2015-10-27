@@ -11,11 +11,6 @@ $grassDark:#BBD6E7;
 $backColor:white;
 $screenColor: #546E7A;
 
-html{
-	margin:0;
-	padding:0;
-	overflow:hidden;
-}
 body{
 	background: $screenColor;
 	font-family: 'Roboto Mono';
@@ -24,7 +19,6 @@ body{
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
-	position: fixed;
 }
 
 *{
@@ -57,6 +51,9 @@ body{
 	display: none;
 	overflow: hidden;
 	background:white;
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	transform:translate3d(0,0,0);
 }
 .screen{
 	position: absolute;
@@ -64,6 +61,9 @@ body{
 	top:50%;
 	z-index: 10;
 	font-size: 0px;
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	transform:translate3d(0,0,0);
 }
 .topScreen{
 	position: absolute;
@@ -115,9 +115,7 @@ body{
 	left:50%;
 	top:50%;
 	opacity: 1;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
-	-webkit-animation: infinite-spinning 3.5s linear infinite;
+	
 }
 
 ._hShrineCircle{
@@ -137,8 +135,7 @@ body{
 	background: $taller;
 	opacity: 1;
 	box-sizing:border-box;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
+
 }
 
 ._shrineFaded{
@@ -156,8 +153,7 @@ body{
 	vertical-align: middle;
 	left:50%;
 	top:50%;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
+	
 }
 
 
@@ -167,8 +163,6 @@ body{
 	background: $stronger;
 	opacity: 1;
 	box-sizing:border-box;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
 }
 
 ._hStrongerInner{
@@ -178,8 +172,7 @@ body{
 	vertical-align: middle;
 	left:50%;
 	top:50%;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
+	
 }
 
 
@@ -189,8 +182,6 @@ body{
 	background: $sharper;
 	opacity: 1;
 	box-sizing:border-box;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
 }
 
 ._hSharperInner{
@@ -200,8 +191,7 @@ body{
 	vertical-align: middle;
 	left:50%;
 	top:50%;
-	-webkit-transform:translate3d(0,0,0);
-	-webkit-backface-visibility: hidden;
+	
 }
 
 ._hBlankTile{
@@ -304,9 +294,9 @@ body{
 	left:-25%;
 	background: rgba(#BBD6E7, 0.6);
 	opacity: 0.8;
+	-webkit-backface-visibility: hidden;
 	-webkit-transform:translate3d(0,0,0);
 	-webkit-backface-visibility: hidden;
-	transform:translate3d(0,0,0);
 }
 
 .health{
@@ -475,28 +465,28 @@ body{
 
 
 .depth_1{
-  -webkit-filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.24));
-          filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.24));
+  -webkit-filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0.6px 0.6px rgba(0, 0, 0, 0.24));
+          filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0.6px 0.6px rgba(0, 0, 0, 0.24));
 }
 
 .depth_2{
-  -webkit-filter: drop-shadow(0px 0px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
-          filter: drop-shadow(0px 0px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
+  -webkit-filter: drop-shadow(1px 1px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
+          filter: drop-shadow(1px 1px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 1.8px 1.8px rgba(0, 0, 0, 0.23));
 }
 
 .depth_3{
-  -webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
-          filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
+  -webkit-filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 3.6px 1.8px rgba(0, 0, 0, 0.23));
+          filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 3.6px 1.8px rgba(0, 0, 0, 0.23));
 }
 
 .depth_4{
-  -webkit-filter: drop-shadow(0px 0px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.22));
-          filter: drop-shadow(0px 0px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.22));
+  -webkit-filter: drop-shadow(2px 2px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 6px 3px rgba(0, 0, 0, 0.22));
+          filter: drop-shadow(2px 2px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 6px 3px rgba(0, 0, 0, 0.22));
 }
 
 .depth_5{
-  -webkit-filter: drop-shadow(0px 0px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 3.6px rgba(0, 0, 0, 0.22));
-          filter: drop-shadow(0px 0px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 3.6px rgba(0, 0, 0, 0.22));
+  -webkit-filter: drop-shadow(2px 2px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 9px 3.6px rgba(0, 0, 0, 0.22));
+          filter: drop-shadow(2px 2px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 9px 3.6px rgba(0, 0, 0, 0.22));
 }
 
 .navScreen{
@@ -504,6 +494,9 @@ body{
 	width:100%;
 	height:100%;
 	background:$screenColor;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
 }
 
 .navScreen:after{
@@ -786,7 +779,7 @@ body{
 
 .doneBuild{
     position: absolute;
-    bottom: 15px;
+    bottom: 25px;
     left: 50%;
     width: 116.75px !important;
     z-index: 50;
@@ -797,94 +790,3 @@ body{
 	box-shadow: 5px 5px rgba(68, 68, 68, 0.3) !important;
 	text-shadow: rgba($shrineInner,1) 3px 3px !important;	
 }
-//Aditional Classes to be added
-
-
-//Infinite Spining Animation
-
-@keyframes infinite-spinning {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes infinite-spinning {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-
-}
-
-
-.scale1_1{
-	-webkit-transform: scale(1.1);
-	-webkit-transition: all 0.05s ease-out; 
-}
-
-.scale0_75{
-	-webkit-transform: scale(0.75);
-	-webkit-transition: all 0.2s ease-in; 
-}
-
-.scale0_50{
-	-webkit-transform: scale(0.5);
-	-webkit-transition: all 0.2s ease-in; 
-}
-
-.scale0_0{
-	-webkit-transform:scale(0);
-	-webkit-transition: all 0.2s ease-in;
-}
-//level2 Animation
-
-/*@keyframes level2 {
-  from {
-    -webkit-transform: scale(1.1);
-  }
-  to {
-    -webkit-transform: scale(0.75);
-  }
-}
-
-@-webkit-keyframes level2 {
-  from {
-    -webkit-transform: scale(1.1);
-  }
-  to {
-    -webkit-transform: scale(0.75);
-  }
-}
-
-//level1 Animation
-
-@keyframes level1 {
-  from {
-    -webkit-transform: scale(1.1);
-  }
-  to {
-    -webkit-transform: scale(0.5);
-  }
-}
-
-@-webkit-keyframes level1 {
-  from {
-    -webkit-transform: scale(1.1);
-  }
-  to {
-    -webkit-transform: scale(0.5);
-  }
-}
-*/
-	 /*animation-name: bounce;
-	 animation-duration: 4s;
-	 animation-iteration-count: 10;
-	 animation-direction: alternate;
-	 animation-timing-function: linear;
-	 animation-fill-mode: forwards;
-	 animation-delay: 3s;*/
