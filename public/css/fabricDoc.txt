@@ -1,0 +1,14 @@
+
+
+evented :Boolean §
+When set to `false`, an object can not be a target of events. All events propagate through it. Introduced in v1.3.4
+Type:
+Boolean
+Inherited From:
+fabric.Object#evented
+Default Value:
+true
+Source:
+fabric.js, line 11024
+
+

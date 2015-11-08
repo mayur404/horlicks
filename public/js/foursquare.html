@@ -1,0 +1,88 @@
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var clientId = 'MRM04IM3JICHBGZHHX0H4CMFMIZPBBZT4WYBOQRVGH0ICG1N';
+var clientSecret = 'FJYEHMRX4Y55KNOVLEMQ1DW5KKYNZH0QP3QYRX5VI13VI3PC';
+var lat = '18.5203';
+var lon = '73.8567';
+var resultObj = new Object();
+var url = "https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id="+clientId+"&client_secret="+clientSecret+"&v=20151104&query=restaurant";
+
+console.log(url);
+var data = new Array();
+
+$.get(url,function(response){
+	console.log(response);
+	for(i=0;i<response.response.venues.length;i++){
+		var dataObject = new Object();
+		dataObject.id = response.response.venues[i].id;
+		dataObject.name = response.response.venues[i].name;
+		data.push(dataObject);
+	}
+	console.log(data);
+	getData();
+},'JSONP');
+var finalArray = new Array();
+if(localStorage.finalArray){
+	finalArray = JSON.parse(localStorage.finalArray);
+}else{
+	
+	localStorage.finalArray = '';
+}
+var createdAt = new Array();
+var index = 1;
+function getData(){
+	var url = "https://api.foursquare.com/v2/venues/"+data[index].id+"/photos?client_id="+clientId+"&client_secret="+clientSecret+"&v=20151104";
+
+	$.get(url,function(response){
+		
+		for(i=0;i<response.response.photos.items.length;i++){
+			
+			var timestamp = response.response.photos.items[i].createdAt;
+			console.log(timestamp);
+			var date = new Date(timestamp*1000);
+
+			createdAt.push(date.getYear()%100 +2000);
+		}
+		console.log(createdAt);
+
+		result = foo(createdAt);
+		console.log(result[0]);
+		console.log(result[1]);
+		resultObj = {'id':data[index].id,'name':data[index].name,'2011':result[1][0],'2012':result[1][1],'2013':result[1][2],'2014':result[1][3]||0};
+		finalArray.push(resultObj);
+		//localStorage.finalArray = JSON.stringify(finalArray);
+		console.log(localStorage.finalArray);
+
+	},'JSONP');
+
+
+}
+
+
+function foo(arr) {
+    var a = [], b = [], prev;
+
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+
+    return [a, b];
+}
+
+</script>
+</body>
+</html>

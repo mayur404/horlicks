@@ -1,0 +1,925 @@
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+
+body {
+  background: #00695C;
+  font-family: 'Roboto Mono';
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #00574E; }
+
+* {
+  box-sizing: border-box; }
+
+.layout {
+  position: absolute;
+  top: 50%;
+  margin-top: -75px;
+  left: 0;
+  width: 100%;
+  display: none; }
+
+.content {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  text-align: center; }
+
+.intro {
+  display: block; }
+
+.demoArea {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: none;
+  background: #0E9486;
+  text-align: center; }
+
+.demoArea:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pattern/sos1.png");
+  background-repeat: repeat;
+  opacity: 0.2;
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  display: inline-block; }
+
+.demoArea:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/background.jpg");
+  opacity: 0.4;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: inline-block; }
+
+.gameArea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: hidden;
+  background: white; }
+
+.screen {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  z-index: 10;
+  font-size: 0px; }
+
+.topScreen {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  font-size: 0px; }
+
+.bottomScreen {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  font-size: 0px; }
+
+._hTile {
+  position: relative;
+  display: inline-block;
+  background: white;
+  opacity: 1;
+  box-sizing: border-box; }
+
+._hShrine {
+  position: relative;
+  display: inline-block;
+  /*background: rgba(241,196,15,0.7);*/
+  background: #FF7700;
+  box-sizing: border-box;
+  opacity: 0.8; }
+
+._hShrineInner {
+  position: absolute;
+  background: #FCB634;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  opacity: 1; }
+
+._hShrineInner2 {
+  position: absolute;
+  background: #FCB634;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-animation: infinite-spinning 3.5s linear infinite; }
+
+._hShrineCircle {
+  position: absolute;
+  background: #FCB634;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  border-radius: 200px; }
+
+._hTaller {
+  position: relative;
+  display: inline-block;
+  background: #F9615B;
+  opacity: 1;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._shrineFaded {
+  position: relative;
+  display: inline-block;
+  background: #FF7700;
+  opacity: 0.8;
+  box-sizing: border-box; }
+
+._hTallerInner {
+  position: relative;
+  background: #F9615B;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._hStronger {
+  position: relative;
+  display: inline-block;
+  background: #B8D348;
+  opacity: 1;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._hStrongerInner {
+  position: relative;
+  background: #B8D348;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._hSharper {
+  position: relative;
+  display: inline-block;
+  background: #6114CC;
+  opacity: 1;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._hSharperInner {
+  position: relative;
+  background: #6114CC;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; }
+
+._hBlankTile {
+  position: relative;
+  display: inline-block;
+  background: white;
+  opacity: 0;
+  box-sizing: border-box; }
+
+._hGrass {
+  position: relative;
+  display: inline-block;
+  background: #64FFDA;
+  opacity: 0.2;
+  box-sizing: border-box; }
+
+._hGrassDark {
+  position: relative;
+  display: inline-block;
+  background: #64FFDA;
+  opacity: 0.2;
+  box-sizing: border-box;
+  text-align: center; }
+
+._hGrassInner {
+  position: relative;
+  background: #64FFDA;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%; }
+
+._hGrassInnerDark {
+  position: relative;
+  background: #64FFDA;
+  box-sizing: border-box;
+  vertical-align: middle;
+  left: 50%;
+  top: 50%; }
+
+.pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pattern/sos1.png");
+  background-repeat: repeat;
+  opacity: 0; }
+
+.innerPattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pattern/sos1.png");
+  background-repeat: repeat;
+  opacity: 0; }
+
+.skillsBar {
+  position: fixed;
+  top: 0px;
+  height: 10px;
+  width: 100%;
+  font-size: 0px;
+  z-index: 15; }
+
+.skill {
+  position: relative;
+  height: 100%;
+  display: inline-block; }
+
+.taller {
+  background: #F9615B;
+  display: inline-block; }
+
+.stronger {
+  background: #B8D348;
+  display: inline-block; }
+
+.sharper {
+  background: #6114CC;
+  display: inline-block; }
+
+.healthBar {
+  position: fixed;
+  width: 150%;
+  bottom: 0;
+  height: 50%;
+  left: -25%;
+  background: white;
+  opacity: 0.8;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0); }
+
+.health {
+  position: absolute;
+  height: 100%;
+  width: 150%;
+  left: -25%;
+  background-image: url("../img/pattern/sosbackup.png");
+  background-repeat: repeat;
+  opacity: 0.2; }
+
+.healthother {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/pattern/sosflipbackup.png");
+  background-repeat: repeat;
+  opacity: 0.2; }
+
+.homescreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #546E7A; }
+
+.patternOther {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pattern/sos1.png");
+  background-repeat: repeat;
+  opacity: 0.6; }
+
+.homeContent {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10%;
+  text-align: center; }
+
+.btn {
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  line-height: 25px;
+  width: 250px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 15px 0px;
+  background: none;
+  border: 3px solid white;
+  padding: 10px;
+  font-style: italic;
+  color: white;
+  box-shadow: 5px 5px rgba(68, 68, 68, 0.7); }
+
+.btnOther {
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  line-height: 25px;
+  width: 250px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 15px 0px;
+  background: none;
+  border: 3px solid white;
+  padding: 10px;
+  font-style: italic;
+  color: white;
+  box-shadow: 5px 5px rgba(68, 68, 68, 0.7); }
+
+.footer {
+  position: relative;
+  color: white;
+  opacity: 0.6;
+  padding-top: 20px; }
+
+.start {
+  background: rgba(249, 97, 91, 0.4);
+  border-color: #F9615B; }
+
+.join {
+  background: rgba(184, 211, 72, 0.1);
+  border-color: #B8D348; }
+
+.story {
+  background: rgba(252, 182, 52, 0.15);
+  border-color: #FCB634; }
+
+.instructions {
+  background: rgba(97, 20, 204, 0.15);
+  border-color: #6114CC; }
+
+.replay {
+  background: rgba(249, 97, 91, 0.3);
+  border-color: #F9615B; }
+
+.exitGameEnd {
+  background: rgba(184, 211, 72, 0.3);
+  border-color: #B8D348; }
+
+.startDemo {
+  background: rgba(249, 97, 91, 0.3);
+  border-color: #F9615B; }
+
+.joinDemo {
+  background: rgba(184, 211, 72, 0.3);
+  border-color: #B8D348; }
+
+.execute {
+  background: rgba(255, 119, 0, 0.3);
+  border-color: #FCB634; }
+
+.tallerClan {
+  background: rgba(249, 97, 91, 0.3);
+  border-color: #F9615B;
+  text-align: left; }
+
+.strongerClan {
+  background: rgba(184, 211, 72, 0.3);
+  border-color: #B8D348;
+  text-align: left; }
+
+.sharperClan {
+  background: rgba(97, 20, 204, 0.3);
+  border-color: #6114CC;
+  text-align: left; }
+
+.aptClan {
+  background: rgba(255, 119, 0, 0.3);
+  border-color: #FCB634;
+  text-align: left; }
+
+.btn:active {
+  -webkit-transform: scale(1.05); }
+
+.inputContainer {
+  position: relative;
+  margin-top: 10px;
+  width: 250px;
+  height: 50px; }
+
+.inputBox {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+  font-size: 20px;
+  border: 3px solid #64ffda;
+  box-shadow: none;
+  text-transform: uppercase;
+  background: rgba(100, 255, 218, 0.3);
+  border-radius: 0px;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  box-shadow: 5px 5px #444444;
+  float: left;
+  margin-right: 16.5px;
+  -webkit-appearance: none;
+  text-shadow: #444444 3px 3px;
+  box-shadow: 5px 5px rgba(68, 68, 68, 0.7);
+  -webkit-box-shadow: 5px 5px rgba(68, 68, 68, 0.7); }
+
+.inputBox:focus {
+  border: 3px solid #64ffda;
+  background: rgba(100, 255, 218, 0.3);
+  outline: 0; }
+
+.startplay {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: white;
+  color: white; }
+
+.tile {
+  opacity: 0.7; }
+
+.depth_1 {
+  -webkit-filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.24));
+  filter: drop-shadow(0 0 0.9px rgba(0, 0, 0, 0.12)) drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.24)); }
+
+.depth_2 {
+  -webkit-filter: drop-shadow(0px 0px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
+  filter: drop-shadow(0px 0px 1.8px rgba(0, 0, 0, 0.16)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23)); }
+
+.depth_3 {
+  -webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23));
+  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.19)) drop-shadow(0 0 1.8px rgba(0, 0, 0, 0.23)); }
+
+.depth_4 {
+  -webkit-filter: drop-shadow(0px 0px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.22));
+  filter: drop-shadow(0px 0px 8.4px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.22)); }
+
+.depth_5 {
+  -webkit-filter: drop-shadow(0px 0px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 3.6px rgba(0, 0, 0, 0.22));
+  filter: drop-shadow(0px 0px 11.4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 3.6px rgba(0, 0, 0, 0.22)); }
+
+.navScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #00695C; }
+
+.navScreen:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pattern/sos1.png");
+  background-repeat: repeat;
+  opacity: 0.6;
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  display: inline-block; }
+
+.navScreenInner {
+  position: relative;
+  width: 250px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 5;
+  opacity: 0; }
+
+.rotateInner {
+  position: relative;
+  top: 50%; }
+
+.gameEndInner {
+  position: relative; }
+
+.navScreenInnerFull {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  z-index: 5; }
+
+.logo {
+  position: relative;
+  width: 80%;
+  margin-top: 10%;
+  display: none; }
+
+.header {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: italic;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+.headerSmall {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: italic;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
+.logoFont {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: italic;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  opacity: 1; }
+
+.score {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: bold;
+  text-transform: italic;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
+.shadow {
+  text-shadow: #444444 5px 5px; }
+
+.shadowSmall {
+  text-shadow: #444444 3px 3px; }
+
+.subHeader {
+  position: relative;
+  color: white;
+  opacity: 0.8;
+  padding: 5px 10px;
+  font-style: italic; }
+
+.glaxo {
+  background: rgba(249, 97, 91, 0.4);
+  border-color: #F9615B; }
+
+.smith {
+  background: rgba(184, 211, 72, 0.1);
+  border-color: #B8D348; }
+
+.kline {
+  background: rgba(97, 20, 204, 0.15);
+  border-color: #6114CC; }
+
+.stark {
+  background: rgba(0, 176, 255, 0.15);
+  border-color: #00B0FF; }
+
+.white {
+  background: rgba(100, 255, 218, 0.2);
+  border-color: #64FFDA; }
+
+.level {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1; }
+
+.full {
+  width: 100% !important; }
+
+.mid {
+  width: 65% !important; }
+
+.less {
+  width: 34% !important; }
+
+.tallLevel {
+  background: rgba(249, 97, 91, 0.2); }
+
+.strongLevel {
+  background: rgba(184, 211, 72, 0.35); }
+
+.sharpLevel {
+  background: rgba(97, 20, 204, 0.25); }
+
+.home {
+  display: none; }
+
+.demoHome {
+  display: block; }
+
+.rotate {
+  display: none;
+  z-index: 1000; }
+
+.gameEnd {
+  display: none; }
+
+.clanSelect {
+  display: none; }
+
+.navScreen:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/back1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.1;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  display: inline-block; }
+
+.glaxoScreen {
+  display: none; }
+
+.smithScreen {
+  display: none; }
+
+.klineScreen {
+  display: none; }
+
+.starkScreen {
+  display: none; }
+
+.hostDesc {
+  margin-top: 10px; }
+
+.inputHidden {
+  opacity: 0.3; }
+
+.twoButton {
+  position: relative;
+  width: 250px;
+  display: inline-block; }
+
+.smallLeft {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 116.75px; }
+
+.smallRight {
+  width: 116.75px;
+  float: right;
+  position: relative;
+  display: inline-block; }
+
+.noTopMargin {
+  margin-top: 0 !important; }
+
+.noBottomMargin {
+  margin-bottom: 0 !important; }
+
+.noRightMargin {
+  margin-right: 0 !important; }
+
+.noLeftMargin {
+  margin-left: 0 !important; }
+
+.equalMargin {
+  margin: 10px 0px !important; }
+
+.noMargin {
+  margin: 0px !important; }
+
+.hostScreen {
+  display: none;
+  overflow-y: scroll; }
+
+.lower {
+  text-transform: lowercase; }
+
+.joinScreen {
+  display: none;
+  overflow-y: scroll; }
+
+.topHalf {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  vertical-align: middle; }
+
+.bottomHalf {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 50%; }
+
+.alignBottom {
+  position: absolute !important;
+  bottom: 0px; }
+
+.fullWidthText {
+  position: absolute;
+  width: 100%;
+  padding: 30px 10% !important;
+  margin-bottom: 30px !important; }
+
+.alignNo {
+  line-height: 0px;
+  font-size: 150px;
+  margin-top: 90px !important; }
+
+.middleLine {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  background: #64FFDA; }
+
+.tapArea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(100, 255, 218, 0.2);
+  opacity: 0.001; }
+
+.alignScreen {
+  display: none; }
+
+.loadingScreen {
+  display: none; }
+
+.loadingText {
+  position: absolute;
+  line-height: 200px;
+  width: 100%;
+  top: 50%;
+  text-align: center;
+  color: white;
+  font-style: italic;
+  margin-top: -100px !important; }
+
+.messageLog {
+  position: absolute;
+  bottom: 10px;
+  z-index: 50;
+  width: 100%;
+  text-align: center;
+  color: #64FFDA !important;
+  text-shadow: #444444 1.5px 1.5px;
+  opacity: 0.9; }
+
+@keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@-webkit-keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+.scale1_1 {
+  -webkit-transform: scale(1.1);
+  -webkit-transition: all 0.05s ease-out; }
+
+.scale0_75 {
+  -webkit-transform: scale(0.75);
+  -webkit-transition: all 0.2s ease-in; }
+
+.scale0_50 {
+  -webkit-transform: scale(0.5);
+  -webkit-transition: all 0.2s ease-in; }
+
+.scale0_0 {
+  -webkit-transform: scale(0);
+  -webkit-transition: all 0.2s ease-in; }
+
+#canvas {
+  position: absolute !important;
+  background: none;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  perspective: 200px;
+  -webkit-perspective: 200px;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d; }
+
+/*#hCanvas{
+	position: absolute !important;
+	background:none;
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	perspective: 200px;
+	-webkit-perspective:200px;
+	transform:translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}*/
+/*.upper-canvas{
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	perspective: 200px;
+	-webkit-perspective:200px;
+	transform:translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}*/
+.canvas-container {
+  position: absolute !important;
+  top: 0px;
+  z-index: 1; }
+
+/*@keyframes level2 {
+  from {
+    -webkit-transform: scale(1.1);
+  }
+  to {
+    -webkit-transform: scale(0.75);
+  }
+}
+
+@-webkit-keyframes level2 {
+  from {
+    -webkit-transform: scale(1.1);
+  }
+  to {
+    -webkit-transform: scale(0.75);
+  }
+}
+
+//level1 Animation
+
+@keyframes level1 {
+  from {
+    -webkit-transform: scale(1.1);
+  }
+  to {
+    -webkit-transform: scale(0.5);
+  }
+}
+
+@-webkit-keyframes level1 {
+  from {
+    -webkit-transform: scale(1.1);
+  }
+  to {
+    -webkit-transform: scale(0.5);
+  }
+}
+*/
+/*animation-name: bounce;
+animation-duration: 4s;
+animation-iteration-count: 10;
+animation-direction: alternate;
+animation-timing-function: linear;
+animation-fill-mode: forwards;
+animation-delay: 3s;*/
+
+/*# sourceMappingURL=screen.css.map */

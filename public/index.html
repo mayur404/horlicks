@@ -17,6 +17,49 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 </script>
 </head>
 <body>
+
+<div class="navScreen demoHome">
+  <div class="navScreenInner">
+     <div class="logoFont shadow">MELK</div>
+     <div class="headerSmall shadow">You.<br/>A few friends,<br/>one game.</div>
+      <div class="btn start shadowSmall ">Start Game</div>
+      <div class="btn join shadowSmall ">Join Game</div>
+      <div class="btn instructions shadowSmall ">Instructions</div>
+      <div class="btn story shadowSmall ">The Story</div>
+      <div class="footer">little-boat:studios.</div>
+  </div>
+</div>
+
+<div class="navScreen rotate">
+  <div class="navScreenInner rotateInner">
+    <div class="headerSmall shadow">"Keep the Clan in Order"</div>
+    <div class="subHeader shadowSmall">The viking laws suggest you keep the device vertical.</div>
+  </div>
+</div>
+
+<div class="gameEnd">
+  <div class="gameEndBack"></div>
+  <div class="navScreenInner gameEndInner">
+    <div class="score shadow">0</div>
+    <div class="headerSmall shadow winMessage"></div>
+    <div class="subHeader shadowSmall winSubMessage"></div>
+    <div class="btn replay shadowSmall">Replay</div>
+      <div class="btn exitGameEnd shadowSmall">Exit</div>
+  </div>
+</div>
+
+<div class="demoArea" id="demoArea">
+  <div class="demoAreaBack"></div>
+    <div class="healthBar"><div class="health"></div><div class="healthother"></div></div>
+    <canvas id="canvas"></canvas>
+     <div class="headerSmall messageLog"></div>
+     <div class="skillsBar">
+        <div class="taller skill"></div>
+        <div class="stronger skill"></div>
+        <div class="sharper skill"></div>
+    </div>
+</div>
+
 <div class="gameArea">
     <div class="skillsBar">
         <div class="taller skill"></div>
@@ -33,6 +76,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 <div class="navScreen home">
   <div class="navScreenInner">
     <img src= "img/logo.png" class="logo">
+     <div class="headerSmall shadow ppi"></div>
     <div class="headerSmall shadow">You.<br/>A few friends,<br/>one game.</div>
       <div class="btn start shadowSmall ">Start Game</div>
       <div class="btn join shadowSmall ">Join Game</div>
@@ -43,7 +87,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 
 <div class="navScreen clanSelect">
   <div class="navScreenInner">
-    <img src= "img/logo.png" class="logo">
     <div class="headerSmall shadow">Select your Clan</div>
       <div class="subHeader shadowSmall">Select a clan based on its skills.</div>
       <div class="btn glaxo clan shadowSmall ">Glaxo</div>
@@ -56,7 +99,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 
 <div class="navScreen clanScreen glaxoScreen">
   <div class="navScreenInner">
-    <img src= "img/logo.png" class="logo">
     <div class="headerSmall shadow">The Glaxo Clan.</div>
       <div class="subHeader shadowSmall">The Glaxo Clan is known for being tallest of all clans.</div>
       <div class="btnOther glaxo shadowSmall "><div class="level tallLevel full"></div>Taller</div>
@@ -71,7 +113,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 
 <div class="navScreen clanScreen smithScreen">
   <div class="navScreenInner">
-    <img src= "img/logo.png" class="logo">
     <div class="headerSmall shadow">The Smith Clan.</div>
       <div class="subHeader shadowSmall">The Smith Clan are know for their super strength capabilities.</div>
       <div class="btnOther glaxo shadowSmall level3"><div class="level tallLevel mid"></div>Taller</div>
@@ -86,7 +127,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 
 <div class="navScreen clanScreen klineScreen">
   <div class="navScreenInner">
-    <img src= "img/logo.png" class="logo">
     <div class="headerSmall shadow">The Kline Clan.</div>
       <div class="subHeader shadowSmall">The Kline Clan clever, smart and sharpest of all.</div>
       <div class="btnOther glaxo shadowSmall level3"><div class="level tallLevel less"></div>Taller</div>
@@ -101,7 +141,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 
 <div class="navScreen clanScreen starkScreen">
   <div class="navScreenInner">
-    <img src= "img/logo.png" class="logo">
     <div class="headerSmall shadow">The Stark Clan.</div>
       <div class="subHeader shadowSmall">The Stark Clan is jack of all trades.</div>
       <div class="btnOther glaxo shadowSmall level3"><div class="level tallLevel mid"></div>Taller</div>
@@ -185,16 +224,17 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 </div>
 
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<!--script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script type="text/javascript" src="http://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script>
-<script type="text/javascript" src="js/velocity.js"></script>
-<script type="text/javascript" src="js/velocity.ui.js"></script>
+<script type="text/javascript" src="http://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/socket.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>  
+<script type="text/javascript" src="js/transit.js"></script>
+<script type="text/javascript" src="js/fabric.js"></script>
+<script type="text/javascript" src="js/doubletap.js"></script>
 <script type="text/javascript" src="js/fastclick.js"></script>
 <script src="js/app.js"></script>
-<script type="text/javascript">
-document.ontouchmove = function(e){ e.preventDefault(); }
-</script>
 </body>
 </html>

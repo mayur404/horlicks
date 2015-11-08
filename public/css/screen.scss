@@ -1,16 +1,18 @@
-$shrine: #FE9132;
+$shrine: #FF7700;
 $shrineInner: #FCB634;
-$taller:#FF7664;
-$tallerInner:#F75845;
-$stronger:#D05083;
-$strongerInner:#AD4D8D;
-$sharper:#BFC201;
-$sharperInner:#A4A106;
-$grass:#FFFFFF;
-$grassDark:#BBD6E7;
+$taller:#F9615B;
+$tallerInner:#F9615B;
+$stronger:#B8D348;
+$strongerInner:#B8D348;
+$sharper:#6114CC;
+$sharperInner:#6114CC;
+$grass:#64FFDA;
+$grassDark:#64FFDA;
+$apt:#00B0FF;
+$aptInner:#00B0FF;
 $backColor:white;
-$screenColor: #546E7A;
-
+$screenColor: #00695C;
+$highlight:#1DE9B6;
 html{
 	margin:0;
 	padding:0;
@@ -25,6 +27,7 @@ body{
 	width: 100%;
 	height: 100%;
 	position: fixed;
+	background:#00574E;
 }
 
 *{
@@ -49,6 +52,77 @@ body{
 .intro{
 	display: block;
 }
+
+.demoArea{
+	position: absolute;
+	height:100%;
+	width:100%;
+	display:none;
+	text-align:center;
+ }
+.demoAreaBack{
+	position: absolute;
+	height:100%;
+	width:100%;
+	background-image: url("../img/background.jpg");
+	opacity:0.4;
+}
+.demoAreaBack:after{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png");
+  	background-repeat: repeat;
+  	opacity: 0.5;
+	top: 0px;
+	right: 0px;
+	position: absolute;
+	display: inline-block;
+}
+.demoAreaBack:before{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background:#0E9486;
+	opacity:0.7;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	display: inline-block;
+}
+
+.gameEndBack{
+	position: absolute;
+	height:100%;
+	width:100%;
+	background-image: url("../img/background.jpg");
+	opacity:0.6;
+}
+.gameEndBack:after{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/pattern/sos1.png");
+  	background-repeat: repeat;
+  	opacity: 0.5;
+	top: 0px;
+	right: 0px;
+	position: absolute;
+	display: inline-block;
+}
+.gameEndBack:before{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background:#0E9486;
+	opacity:0.6;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	display: inline-block;
+}
+
+
 
 .gameArea{
 	position: absolute;
@@ -298,11 +372,10 @@ body{
 .healthBar{
 	position: fixed;
 	width: 150%;
-	bottom:0px;
-	height: 100%;
-	z-index: 5;
+	bottom:0;
+	height: 50%;
 	left:-25%;
-	background: rgba(#BBD6E7, 0.6);
+	background: rgba(#FFFFFF,1);
 	opacity: 0.8;
 	-webkit-transform:translate3d(0,0,0);
 	-webkit-backface-visibility: hidden;
@@ -316,7 +389,7 @@ body{
 	left:-25%;
 	background-image: url("../img/pattern/sosbackup.png");
   	background-repeat: repeat;
-  	opacity: 1;
+  	opacity: 0.2;
   	
 }
 .healthother{
@@ -325,7 +398,7 @@ body{
 	width: 100%;
 	background-image: url("../img/pattern/sosflipbackup.png");
   	background-repeat: repeat;
-  	opacity: 0.6;
+  	opacity: 0.2;
 }
 
 .homescreen{
@@ -390,16 +463,41 @@ body{
 	padding-top: 20px;
 }
 .start{
-	background: rgba($taller,0.3);
+	background: rgba($tallerInner,0.4);
 	border-color:$tallerInner;
 }
 .join{
-	background: rgba($stronger,0.3);
+	background: rgba($strongerInner,0.1);
 	border-color:$strongerInner;
 }
 .story{
-	background: rgba($sharper,0.3);
+	background: rgba($shrineInner,0.15);
+	border-color:$shrineInner;
+}
+.instructions{
+	background: rgba($sharperInner,0.15);
 	border-color:$sharperInner;
+}
+
+.replay{
+	background: rgba($taller,0.3);
+	border-color:$tallerInner;
+}
+.exitGameEnd{
+	background: rgba($grass,0.2);
+	border-color:$grass;
+}
+.startDemo{
+	background: rgba($taller,0.3);
+	border-color:$tallerInner;
+}
+.joinDemo{
+	background: rgba($stronger,0.3);
+	border-color:$strongerInner;
+}
+.execute{
+	background: rgba($shrine,0.3);
+	border-color:$shrineInner;
 }
 
 .tallerClan{
@@ -449,18 +547,22 @@ body{
 	border:3px solid rgba($grassDark,1);
 	box-shadow: none;
 	text-transform: uppercase;
-	background: rgba($grass,0.5);
-	border-radius: none;
+	background: rgba($grass,0.3);
+	border-radius: 0px;
 	color:white;
 	font-weight: bold;
 	font-style: italic;
 	box-shadow: 5px 5px rgb(68, 68, 68);
 	float:left;
 	margin-right:16.5px;
+	-webkit-appearance: none;
+	text-shadow: rgb(68, 68, 68) 3px 3px;
+	box-shadow: 5px 5px rgba(68, 68, 68, 0.7);	
+	-webkit-box-shadow: 5px 5px rgba(68, 68, 68, 0.7);	
 }
 .inputBox:focus{
 	border:3px solid rgba($grassDark,1);
-	background: rgba($grass,0.5);
+	background: rgba($grass,0.3);
 	outline:0;
 }
 .startplay{
@@ -470,7 +572,6 @@ body{
 }
 .tile{
 	opacity: 0.7;
-	
 }
 
 
@@ -505,6 +606,12 @@ body{
 	height:100%;
 	background:$screenColor;
 }
+.gameEnd{
+	position: absolute;
+	width:100%;
+	height:100%;
+	background:$screenColor;
+}
 
 .navScreen:after{
 	content:'';
@@ -512,7 +619,7 @@ body{
 	height: 100%;
 	background-image: url("../img/pattern/sos1.png");
   	background-repeat: repeat;
-  	opacity: 0.6;
+  	opacity: 0.5;
 	top: 0px;
 	right: 0px;
 	position: absolute;
@@ -525,6 +632,11 @@ body{
 	margin:0 auto;
 	text-align:center;
 	z-index:5;
+	opacity:0;
+}
+.rotateInner{
+	position: relative;
+	top:50%;
 }
 
 .navScreenInnerFull{
@@ -538,7 +650,8 @@ body{
 .logo{
 	position: relative;
 	width: 80%;
-	margin-top:20%;
+	margin-top:10%;
+	display:none;
 }
 
 .header{
@@ -566,6 +679,32 @@ body{
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
+.logoFont{
+	position: relative;
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: bold;
+	text-transform: italic;
+	color:white;
+	font-style: italic;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	opacity:1;
+}
+
+.score{
+	position: relative;
+	text-transform: uppercase;
+	font-size: 60px;
+	font-weight: bold;
+	text-transform: italic;
+	color:white;
+	font-style: italic;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
 
 .shadow{
 	text-shadow: rgb(68, 68, 68) 5px 5px;
@@ -584,27 +723,27 @@ body{
 }
 
 .glaxo{
-	background: rgba($taller,0.3);
+	background: rgba($taller,0.4);
 	border-color:$tallerInner;
 }
 
 .smith{
-	background: rgba($stronger,0.3);
+	background: rgba($stronger,0.1);
 	border-color:$strongerInner;
 }
 
 .kline{
-	background: rgba($sharper,0.3);
+	background: rgba($sharper,0.15);
 	border-color:$sharperInner;
 }
 
 .stark{
-	background: rgba($shrine,0.3);
-	border-color:$shrineInner;
+	background: rgba($apt,0.15);
+	border-color:$aptInner;
 }
 
 .white{
-	background: rgba($grass,0.3);
+	background: rgba($grass,0.2);
 	border-color:$grassDark;
 }
 
@@ -629,25 +768,54 @@ body{
 }
 
 .tallLevel{
-	background: rgba($taller,0.6);
+	background: rgba($taller,0.2);
 }
 
 .strongLevel{
-	background: rgba($stronger,0.6);
+	background: rgba($stronger,0.35);
 }
 
 .sharpLevel{
-	background: rgba($sharper,0.6);
+	background: rgba($sharper,0.25);
 }
 
 .home{
+	display:none;
+}
+.demoHome{
 	display:block;
 }
 
+.rotate{
+	display:none;
+	z-index: 1000;
+}
+
+.gameEnd{
+	display:none;
+}
+
+.gameEndInner{
+	position: relative;
+}
 .clanSelect{
 	display:none;
 }
 
+.navScreen:before{
+	content:'';
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/back1.jpg");
+  	background-repeat: no-repeat;
+  	background-size:768px 1280px;
+  	background-position:center center;
+  	opacity: 0.6;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	display: inline-block;
+}
 .glaxoScreen{
 	display:none;
 }
@@ -784,18 +952,15 @@ body{
 }
 
 
-.doneBuild{
+.messageLog{
     position: absolute;
-    bottom: 15px;
-    left: 50%;
-    width: 116.75px !important;
+    bottom: 10px;
     z-index: 50;
-    margin-left: -58.375px !important;
-    color:$shrine;
-    background: rgba($shrine,0.6);
-	border-color:$shrine;
-	box-shadow: 5px 5px rgba(68, 68, 68, 0.3) !important;
-	text-shadow: rgba($shrineInner,1) 3px 3px !important;	
+    width:100%;
+    text-align:center;
+    color:$grass !important;
+    text-shadow: #444444 1.5px 1.5px;
+    opacity: 0.9;
 }
 //Aditional Classes to be added
 
@@ -840,6 +1005,51 @@ body{
 .scale0_0{
 	-webkit-transform:scale(0);
 	-webkit-transition: all 0.2s ease-in;
+}
+
+
+
+#canvas{
+	position: absolute !important;
+	background:none;
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	perspective: 200px;
+	-webkit-perspective:200px;
+	transform:translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}
+/*#hCanvas{
+	position: absolute !important;
+	background:none;
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	perspective: 200px;
+	-webkit-perspective:200px;
+	transform:translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}*/
+/*.upper-canvas{
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	perspective: 200px;
+	-webkit-perspective:200px;
+	transform:translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}*/
+.canvas-container{
+	position: absolute !important;
+	top:0px;
+	z-index:1;
 }
 //level2 Animation
 
