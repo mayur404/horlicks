@@ -1,7 +1,7 @@
 $(function(){
 
 LOG && console.log("Link Opened");
-
+mixpanel.track("Connected");
 FastClick.attach(document.body);
 
 var socket = io();
@@ -13,7 +13,6 @@ var sharpClan = new Object();
 var aptClan = new Object();
 
 var clan = 0;
-
 var baseHealth = 15
 var health = baseHealth;
 var baseTiles = 16;
@@ -80,7 +79,7 @@ var tapOpen = false;
 
 //Requesting the deviceData
 
-if(localStorage.pwidth&&localStorage.pheight){
+/*if(localStorage.pwidth&&localStorage.pheight){
 	//Direct use Device Data;
 	console.log("From localStorage");
 	console.log(localStorage.pwidth);
@@ -89,9 +88,9 @@ if(localStorage.pwidth&&localStorage.pheight){
 	pHeight = parseFloat(localStorage.pheight)
 	deviceDataSet = true;
 
-}else{
+}else{*/
 	socket.emit("requestDeviceData");
-}
+//}
 
 ///All Canvas Functionality
 

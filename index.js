@@ -699,10 +699,10 @@ io.on('connection',function(socket){
 		var brand,model,pwidth,pheight,density;
 		var result_capabilities = {};
 		var device = new Object();
-		console.log("Request ---------------------------------");
-		console.log(HttpRequest)
-		console.log("Response ---------------------------------");
-		console.log(HttpResponse)
+		//console.log("Request ---------------------------------");
+		//console.log(HttpRequest)
+		//console.log("Response ---------------------------------");
+		//console.log(HttpResponse)
 		var WURFLCloudClientObject = new wurfl_cloud_client.WurflCloudClient(configuration, HttpRequest, HttpResponse);
 		//Getting the Physical Width
 		WURFLCloudClientObject.detectDevice(HttpRequest, null, function(err, result_capabilities){
