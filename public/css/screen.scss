@@ -57,6 +57,7 @@ body{
 	position: absolute;
 	height:100%;
 	width:100%;
+	overflow:hidden;
 	display:none;
 	text-align:center;
  }
@@ -622,7 +623,7 @@ body{
   	opacity: 0.5;
 	top: 0px;
 	right: 0px;
-	position: absolute;
+	position: fixed;
 	display: inline-block;
 }
 
@@ -658,7 +659,14 @@ body{
 	position: relative;
 	height: 120px;
 	opacity:0.9;
-	margin:5px 0px -5px 0px;
+	margin:5px 0px -20px 0px;
+}
+
+.storyLogo{
+	position: relative;
+	height: 150px;
+	opacity:0.9;
+	margin:10px 0px;
 }
 
 
@@ -679,6 +687,19 @@ body{
 	position: relative;
 	text-transform: uppercase;
 	font-size: 20px;
+	font-weight: bold;
+	text-transform: italic;
+	color:white;
+	font-style: italic;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.headerSmallI{
+	position: relative;
+	text-transform: uppercase;
+	font-size: 16px;
 	font-weight: bold;
 	text-transform: italic;
 	color:white;
@@ -793,6 +814,19 @@ body{
 .demoHome{
 	display:block;
 }
+.instScreen{
+	display:none;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	padding:20px 0px;
+}
+
+.storyScreen{
+	display:none;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	padding:20px 0px;
+}
 
 .rotate{
 	display:none;
@@ -821,7 +855,7 @@ body{
   	opacity: 0.6;
 	top: 0px;
 	left: 0px;
-	position: absolute;
+	position: fixed;
 	display: inline-block;
 }
 .glaxoScreen{
@@ -890,6 +924,7 @@ body{
 .hostScreen{
 	display:none;
 	overflow-y:scroll;
+	overflow-x:hidden;
 }
 .lower{
 	text-transform:lowercase;
@@ -897,6 +932,7 @@ body{
 .joinScreen{
 	display:none;
 	overflow-y:scroll;
+	overflow-x:hidden;
 }
 .topHalf{
 	position:absolute;

@@ -237,7 +237,7 @@ io.on('connection',function(socket){
 			console.log("gameData before Score");
 			console.log(gameData.score);
 			
-			gameData.score = gameData.score * gameData.totalCols;
+			gameData.score = gameData.score * gameData.playersJoined * 10;
 
 			console.log("Consoling Score After");
 			console.log(gameData.score);

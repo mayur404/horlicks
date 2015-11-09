@@ -13,7 +13,7 @@ var sharpClan = new Object();
 var aptClan = new Object();
 
 var clan = 0;
-var baseHealth = 15
+var baseHealth = 10
 var health = baseHealth;
 var baseTiles = 16;
 var healthConstant = health;
@@ -301,6 +301,11 @@ socket.on('updateGlobalStatus',function(gameData){
 	var clanName = ['glaxo','smith','kline','stark'];
 	var thPlayer = ['st','nd','rd','th'];
 	$(".clans").empty();
+	if(isHost){
+		if(gameData.playersJoined>=2){
+			$(".startActual").removeClass('inputHidden');
+		}
+	}
 	for(i=0;i<gameData.playersJoined;i++){
 		var clanIndex = clanName.indexOf(gameData.players[i].clan);
 		if(thPlayer[gameData.players[i].index - 1]){
@@ -517,16 +522,10 @@ socket.on('demoDrawBoard',function(boardParams){
 	//Showing Instructions
 
 	setTimeout(function(){
-		$(".messageLog").html("Swipe Left or Right,");
+		$(".messageLog").html("Swipe Down When Done!!");
 		setTimeout(function(){
-			$(".messageLog").html("to supply Melk.");
-			setTimeout(function(){
-				$(".messageLog").html("Swipe Down When done!");
-				setTimeout(function(){
-					$(".messageLog").html("");
-				},3000);
-			},500);
-		},500);
+			$(".messageLog").html("");
+		},3000);
 	},500);
 	//Handling Touches
 
@@ -1004,6 +1003,24 @@ $(".join").click(function(){
 	//socket.emit('createGame',size);
 });
 
+$(".instructions").click(function(){
+
+	//Transit Screen
+
+	transitScreen('demoHome','instScreen');
+	//var size = getScreenSize();
+	//socket.emit('createGame',size);
+});
+
+$(".story").click(function(){
+
+	//Transit Screen
+
+	transitScreen('demoHome','storyScreen');
+	//var size = getScreenSize();
+	//socket.emit('createGame',size);
+});
+
 var currentClanScreen = 'glaxoScreen';
 
 $(".clan").click(function(){
@@ -1029,6 +1046,18 @@ $(".clan").click(function(){
 $(".backToClanSelect").click(function(){
 
 	transitScreen(currentClanScreen,'clanSelect');
+
+});
+
+$(".backToHomeFromInst").click(function(){
+
+	transitScreen('instScreen','demoHome');
+
+});
+
+$(".backToHomeFromStory").click(function(){
+
+	transitScreen('storyScreen','demoHome');
 
 });
 
@@ -1200,8 +1229,12 @@ $(".i3").keydown(function(){
 
 
 $(".startActual").click(function(){
+	if($(this).hasClass('inputHidden')){
 
-	socket.emit('alignScreens');
+	}else{
+		socket.emit('alignScreens');	
+	}
+	
 });
 
 
