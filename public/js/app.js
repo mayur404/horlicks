@@ -1286,7 +1286,7 @@ $(".replay").click(function(){
 });
 
 $(".exitGameEnd").click(function(){
-	window.location.replace('http://192.168.1.17:5000');
+	window.location.replace('http://horlicks.herokuapp.com');
 	//transitScreen('gameEnd','demoHome');
 });
 
