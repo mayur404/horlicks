@@ -2,8 +2,8 @@ var express = require('express');
 var cors = require('cors');
 var pF = require('pathfinding');
 var app = express();
-var LOG = true;
-var LOGO = true;
+var LOG = false;
+var LOGO = false;
 //Setting up WURFL
 var wurfl_cloud_client = require("wurflcloud/NodeWurflCloudClient/WurflCloudClient");
 var config = require("wurflcloud/NodeWurflCloudClient/Config");
@@ -146,13 +146,13 @@ io.on('connection',function(socket){
 
 		var index = build.index;
 
-		console.log("Build Submit Data");
+		LOG && console.log("Build Submit Data");
 
-		console.log(JSON.stringify(gameData));
-		console.log(index);
+		LOG && console.log(JSON.stringify(gameData));
+		LOG && console.log(index);
 		
 		var iterator = 0;
-		console.log(JSON.stringify(build.grid));
+		LOG && console.log(JSON.stringify(build.grid));
 		for(var i=0; i<4; i++) {
 		    for(var j=gameData.colsOffset[index]; j<gameData.colsOffset[index] + gameData.players[index].cols; j++) {
 		        gameData.universal[i][j] = build.grid[iterator];
@@ -203,12 +203,12 @@ io.on('connection',function(socket){
 			//Finding the Paths
 
 			for(i=0;i<gameData.paths.length;i++){
-				console.log("I am here for "+ i);
+				LOG && console.log("I am here for "+ i);
 				var grid = new pF.Grid(gameData.pathMap);
 				var finder = new pF.AStarFinder();
 				gameData.paths[i].path = finder.findPath(gameData.paths[i].start.x, gameData.paths[i].start.y,gameData.paths[i].end.x, gameData.paths[i].end.y, grid);
-				console.log("I am done for "+ i);
-				console.log("Builded path for "+i+" : "+gameData.paths[i].path);
+				LOG && console.log("I am done for "+ i);
+				LOG && console.log("Builded path for "+i+" : "+gameData.paths[i].path);
 			}
 
 			//Check if Won or Lost 
@@ -227,30 +227,30 @@ io.on('connection',function(socket){
 			}
 
 			if(won){
-				console.log("The Path is build");
+				LOG && console.log("The Path is build");
 			}else{
-				console.log("Failed to Build Path");
+				LOG && console.log("Failed to Build Path");
 			}
-			console.log("illuminate:");
-			console.log(JSON.stringify(illuminate));
+			LOG && console.log("illuminate:");
+			LOG && console.log(JSON.stringify(illuminate));
 	
-			console.log("gameData before Score");
-			console.log(gameData.score);
+			LOG && console.log("gameData before Score");
+			LOG && console.log(gameData.score);
 			
 			gameData.score = gameData.score * gameData.playersJoined * 10;
 
-			console.log("Consoling Score After");
-			console.log(gameData.score);
+			LOG && console.log("Consoling Score After");
+			LOG && console.log(gameData.score);
 
-			console.log("Total Cols");
-			console.log(gameData.totalCols);
+			LOG && console.log("Total Cols");
+			LOG && console.log(gameData.totalCols);
 
 			//Setting the Highlight Array
 			for(i=0;i<illuminate.length;i++){
 				gameData.highlight[illuminate[i][1]][illuminate[i][0]] = 1;
 			}
-			console.log("Higlight Array:");
-			console.log(JSON.stringify(gameData.highlight));
+			LOG && console.log("Higlight Array:");
+			LOG && console.log(JSON.stringify(gameData.highlight));
 			
 			
 			var playerHighlight = [];
@@ -270,16 +270,16 @@ io.on('connection',function(socket){
 
 			
 
-			console.log("/n/nIndividual Higlight:");
-			console.log(JSON.stringify(playerHighlight));
-			console.log("/n/nAll Set to Roll");
+			LOG && console.log("/n/nIndividual Higlight:");
+			LOG && console.log(JSON.stringify(playerHighlight));
+			LOG && console.log("/n/nAll Set to Roll");
 
 			updateGameData(gameData,gameId);
 
-			console.log(JSON.stringify(gameData.universal));
-			console.log(JSON.stringify(gameData.pathMap));
-			console.log(JSON.stringify(gameData.shrineData));
-			console.log(JSON.stringify(gameData.paths));
+			LOG && console.log(JSON.stringify(gameData.universal));
+			LOG && console.log(JSON.stringify(gameData.pathMap));
+			LOG && console.log(JSON.stringify(gameData.shrineData));
+			LOG && console.log(JSON.stringify(gameData.paths));
 			for(i=0;i<gameData.players.length;i++){
 				var gameEnd = new Object();
 				gameEnd.won = won;
@@ -358,12 +358,12 @@ io.on('connection',function(socket){
 
 	socket.on('transferMelk',function(transferData){
 
-		console.log("Transfer Data ******************************************");
+		LOG && console.log("Transfer Data ******************************************");
 
 		var gameId;
 		var gameData;
 		var tempPlayers;
-		console.log(JSON.stringify(transferData));
+		LOG && console.log(JSON.stringify(transferData));
 		gameId = getGameId(socket);
 		gameData = getGameData(gameId);
 
@@ -610,7 +610,7 @@ io.on('connection',function(socket){
 		    }
 		}
 		updateGameData(gameData,gameId);
-		console.log(JSON.stringify(gameData.universal));
+		LOG && console.log(JSON.stringify(gameData.universal));
 
 		//Done initialize
 

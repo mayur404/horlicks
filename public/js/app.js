@@ -1,7 +1,7 @@
 $(function(){
 
 LOG && console.log("Link Opened");
-//mixpanel.track("Connected");
+mixpanel.track("linkOpened");
 FastClick.attach(document.body);
 
 var socket = io();
@@ -81,14 +81,16 @@ var tapOpen = false;
 
 if(localStorage.pwidth&&localStorage.pheight){
 	//Direct use Device Data;
-	console.log("From localStorage");
-	console.log(localStorage.pwidth);
-	console.log(localStorage.pheight);
+	LOG && console.log("From localStorage");
+	LOG &&console.log(localStorage.pwidth);
+	LOG &&console.log(localStorage.pheight);
 	pWidth = parseFloat(localStorage.pwidth)
 	pHeight = parseFloat(localStorage.pheight)
 	deviceDataSet = true;
+	mixpanel.track("anOldPlayer");
 
 }else{
+	mixpanel.track("aNewPlayer");
 	socket.emit("requestDeviceData");
 }
 
@@ -137,9 +139,11 @@ socket.on('replayFromServer',function(){
 
 
 socket.on('highlight',function(gameEnd){
+	mixpanel.track("gameComplete");
 	score = gameEnd.gameData.score;
 	setTimeout(function(){
 		if(gameEnd.won){
+			mixpanel.track("gameWon");
 			$(".messageLog").html("Congrats: Tap to Cont..");
 			gameWon = true;
 			for(i=0;i<shrineArray.length;i++){
@@ -160,9 +164,10 @@ socket.on('highlight',function(gameEnd){
 			}
 		}else{
 			gameWon = false;
+			mixpanel.track("gameLost");
 			$(".messageLog").html("Failed: Tap to Cont..");	
 		}
-		console.log(JSON.stringify(gameEnd));
+		LOG && console.log(JSON.stringify(gameEnd));
 
 		for(i=0;i<blockArray.length;i++){
 			if(linearGrid[i] == 'X' && gameEnd.highlight[i] == 0){
@@ -177,7 +182,7 @@ socket.on('highlight',function(gameEnd){
 			}
 		}
 		tapOpen = true;
-		console.log("All good!");
+		LOG && console.log("All good!");
 		canvas.renderAll();
 	},2000);
 	
@@ -199,6 +204,7 @@ socket.on('demoHostGameSetup',function(gameData){
 	$(".i3").val(gameIdArray[3]);
 	LOG && console.log("Host Game Setup Setting -------------------------");
 	LOG && console.log(gameData);
+	mixpanel.track("gameCreated");
 
 });
 
@@ -249,6 +255,7 @@ socket.on('transferMelk',function(transferData){
 	health = health + transfer;
 	updateHealth(health,healthConstant);
 	logMessage("Received!!!");
+	mixpanel.track("transferedMelk");
 });
 
 socket.on('requestGameData',function(gameData){
@@ -359,10 +366,10 @@ socket.on('demoDrawBoard',function(boardParams){
 	var height = window.screen.height;
 	var width = window.screen.width;
 	LOG && console.log(boardParams);
-	console.log("Drawing with following dimensions h");
+	LOG && console.log("Drawing with following dimensions h");
 	terminal.log(socket,boardParams.boardHeight);
 	terminal.log(socket,boardParams.boardHeight.toH());
-	console.log(boardParams.boardHeight);
+	LOG && console.log(boardParams.boardHeight);
  	clan = clanName.indexOf(boardParams.clan);
 	total = clans[clan].strong + clans[clan].tall + clans[clan].sharp;
 	tallPer = (clans[clan].tall / total)*100;
@@ -420,7 +427,7 @@ socket.on('demoDrawBoard',function(boardParams){
 
 	//Drawing the Canvas
 	
-	console.log(drawOffset);
+	LOG && console.log(drawOffset);
 	
 	//Setting Health Values
 
@@ -516,8 +523,8 @@ socket.on('demoDrawBoard',function(boardParams){
 	
 	canvas.renderAll();
 	transitScreen('loadingScreen','demoArea');
-	console.log(blockArray);
-	console.log(textArray);
+	LOG && console.log(blockArray);
+	LOG && console.log(textArray);
 
 	//Showing Instructions
 
@@ -634,8 +641,8 @@ socket.on('demoDrawBoard',function(boardParams){
 			canvas.clear().renderAll();
 
 		}else{
-			console.log(options.clientX);
-			console.log(options.clientY);
+			LOG && console.log(options.clientX);
+			LOG && console.log(options.clientY);
 			clientX = options.clientX;
 			clientY = options.clientY;
 			offSetXLeft = 0;
@@ -655,10 +662,10 @@ socket.on('demoDrawBoard',function(boardParams){
 
 				clickIndex = posX + posY * boardParams.cols;
 
-				console.log("Clicked Inside");
-				console.log("Clicked on: " + clickIndex);
+				LOG && console.log("Clicked Inside");
+				LOG && console.log("Clicked on: " + clickIndex);
 				if(health > 0 && blockArray[clickIndex]!=null && !buildSubmited && linearGrid[clickIndex]!= 'X'){
-					console.log("called animate");
+					LOG && console.log("called animate");
 					health = reduceHealth(health,healthConstant);
 					animateBlock(clickIndex);	
 				}
@@ -1310,8 +1317,10 @@ var loadingFlicker = setInterval(function(){
 
 if(detectmob()){
 	transitScreen('demoHome','demoHome');
+	mixpanel.track("mobileUser");
 }else{
 	transitScreen('demoHome','demoDesktop');
+	mixpanel.track("desktopUser");
 }
 
 
@@ -1397,7 +1406,7 @@ function transitScreen(from,to){
 		$("."+to).css({opacity:0});
 		$("."+to).show();
 		margin = $("."+to).children('.navScreenInner').height()/2;
-		console.log(margin);
+		LOG && console.log(margin);
 		$("."+to).transition({opacity:1},400);	
 		if(margin*2 < window.screen.height){
 			$("."+to).children('.navScreenInner').css({'top':'50%','margin-top':-margin});
@@ -1422,7 +1431,7 @@ var hitGrid = new Array();
 var linearGrid = new Array();
 var pHeight;
 var pWidth;
-var LOG = true;
+var LOG = false;
 var terminal = new Object();
 var highlightColor = "#1DE9B6";
 var shrineColor = '#FF7700';
@@ -1711,7 +1720,7 @@ function animateBlock(index){
 			//blockArray[index].set('height',tileH);
 			tScaleY = (tileH+1)/(tileH*0.65);
 			tScaleX = (tileW+1)/(tileH*0.65);
-			console.log("Scale factors:" + tScaleX + ',' + tScaleY);
+			LOG && console.log("Scale factors:" + tScaleX + ',' + tScaleY);
 
 			blockArray[index].animate('scaleX',tScaleX,{
 				duration:200,
@@ -1796,8 +1805,8 @@ function startScoreCount(){
 
 	setTimeout(function(){
 		scoreTemp = score;
-		console.log("Consoling Score");
-		console.log(score);
+		LOG && console.log("Consoling Score");
+		LOG && console.log(score);
 		var time = 2000;
 		var i = 0;
 		var interval = setInterval(function(){
