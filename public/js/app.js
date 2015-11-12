@@ -1,7 +1,7 @@
 $(function(){
 
 LOG && console.log("Link Opened");
-mixpanel.track("Connected");
+//mixpanel.track("Connected");
 FastClick.attach(document.body);
 
 var socket = io();
@@ -79,7 +79,7 @@ var tapOpen = false;
 
 //Requesting the deviceData
 
-/*if(localStorage.pwidth&&localStorage.pheight){
+if(localStorage.pwidth&&localStorage.pheight){
 	//Direct use Device Data;
 	console.log("From localStorage");
 	console.log(localStorage.pwidth);
@@ -88,9 +88,9 @@ var tapOpen = false;
 	pHeight = parseFloat(localStorage.pheight)
 	deviceDataSet = true;
 
-}else{*/
+}else{
 	socket.emit("requestDeviceData");
-//}
+}
 
 ///All Canvas Functionality
 
@@ -1308,8 +1308,13 @@ var loadingFlicker = setInterval(function(){
 
 },300);
 
+if(detectmob()){
+	transitScreen('demoHome','demoHome');
+}else{
+	transitScreen('demoHome','demoDesktop');
+}
 
-transitScreen('demoHome','demoHome');
+
 /*margin = $(".demoHome").children('.navScreenInner').height();
 console.log(margin);
 $(".demoHome").children('.navScreenInner').css({'top':'50%','margin-top': - margin});
@@ -1805,4 +1810,22 @@ function startScoreCount(){
 		
 	},200);
 	
+}
+
+
+
+function detectmob() { 
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+    return true;
+  }
+ else {
+    return false;
+  }
 }
